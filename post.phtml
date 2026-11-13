@@ -1,0 +1,59 @@
+<?
+
+$mailto="pozdnkov@aec.neva.ru";
+//$mailto="del@aec.neva.ru";
+
+$subject[]="ошибочное письмо";
+$subject[]="Второй конкурс проектов методических материалов для дистанционного обучения \"Петербургская Интернет-школа\" ( http://www.aec.neva.ru/internet-school/ch2-1.htm )";
+$subject[]="Международный заочный математический кружок - АНКЕТА ( http://www.aec.neva.ru/internet-school/a/fedotov/5.htm )";
+
+      if ($nomer<0 || $nomer>count($subject)) { echo "error"; exit; }
+
+      $z="*****[".(date("H:i:s d/m/Y",time()))."]*****\n
+ТИП ПИСЬМА - [".$subject[intval($nomer)]."]\n";
+      $z=$z."Заказ от ".getenv("REMOTE_ADDR")." (".getenv("REMOTE_HOST").")\n";
+      $z=$z."
+*** 1. ФИО всех авторов заявки
+".$a1."
+
+*** 2. Домашние адреса, телефоны
+".$a2."
+
+*** 3. Адреса электронной почты или сайтов
+$a3
+
+*** 4. Места работы
+$a4
+
+*** 5. Название проекта
+$a5
+
+*** 6. Класс, предмет, раздел, тема, к которым относится модуль
+$a6
+
+***  7. Номинация  а) материалы в Интернет  б) программные продукты  в) проекты, представленные печатными материалами
+$a7
+
+*** 8. Аннотация представленных материалов или описание проекта (1-2 стр.)
+$a8
+
+*** 9. Представлялись ли материалы на другие конкурсы. Если да, то на какие?
+$a9
+
+";
+
+      mail($mailto, "INTERNET-SCHOOL", $z,
+        "From: \"WWW script, DO NOT REPLAY\" <$mailto>\n".
+        "BCC: del@aec.neva.ru\n".
+        "MIME-Version: 1.0\n".
+        "Content-Type: text/plain; charset=koi-8r\n".
+        "Content-Transfer-Encoding: 8bit");
+
+      Echo "<html><head>
+     <META HTTP-EQUIV='Refresh' CONTENT='5;url=index.htm'>
+      </heaD><body><center><h3>Ваше сообщение отправлено!</h3></center><p>
+      <a href=index.htm>Назад, на главную страницу</a> (вы <b>автоматически</b> туда перейдете через 5 сек)";
+
+
+
+?>

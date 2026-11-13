@@ -1,0 +1,7 @@
+#CharsetSourceEnc windows-1251
+#CharsetDefault windows-1251  
+#CharsetSelectionOrder        
+
+AddType application/octet-stream .jar
+AddType application/octet-stream .ser
+

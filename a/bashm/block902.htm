@@ -1,0 +1,28 @@
+<HTML><BODY><!-- Блок 8. Приложения --><H3>Тест</H3><P>Точка P (2;4) лежит на графике функции y=f(x). Отметьте соответствующую ей точку на графике указанной функции.</P><TABLE BORDER="1" CELLSPACING="1" CELLPADDING="1" WIDTH="80%" ROWS="6" COLS="6"><TR><TD WIDTH="40%"></TD><TD BGCOLOR="#C0C0C0"><CENTER><B>(4;4)</B></CENTER></TD><TD BGCOLOR="#C0C0C0"><CENTER><B>(-2;-4)</B></CENTER></TD><TD BGCOLOR="#C0C0C0"><CENTER><B>(2;2)</B></CENTER></TD><TD BGCOLOR="#C0C0C0"><CENTER><B>(2;-2)</B></CENTER></TD><TD BGCOLOR="#C0C0C0"><CENTER><B>(4;8)</B></CENTER></TD></TR><TR><TD BGCOLOR="#C0C0C0">y=f(x)-2</TD><TD><CENTER><A HREF="javascript:void(0);" onClick="imgClick(1);"><IMG NAME="i1" SRC="../images/l7/block9_3.gif" BORDER="0"></CENTER></A></TD><TD><CENTER><A HREF="javascript:void(0);" onClick="imgClick(2);"><IMG NAME="i2" SRC="../images/l7/block9_3.gif" BORDER="0"></CENTER></A></TD><TD><CENTER><A HREF="javascript:void(0);" onClick="imgClick(3);"><IMG NAME="i3" SRC="../images/l7/block9_3.gif" BORDER="0"></CENTER></A></TD><TD><CENTER><A HREF="javascript:void(0);" onClick="imgClick(4);"><IMG NAME="i4" SRC="../images/l7/block9_3.gif" BORDER="0"></CENTER></A></TD><TD><CENTER><A HREF="javascript:void(0);" onClick="imgClick(5);"><IMG NAME="i5" SRC="../images/l7/block9_3.gif" BORDER="0"></CENTER></A></TD></TR><TR><TD BGCOLOR="#C0C0C0">y=f(x-2)</TD><TD><CENTER><A HREF="javascript:void(0);" onClick="imgClick(6);"><IMG NAME="i6" SRC="../images/l7/block9_3.gif" BORDER="0"></CENTER></A></TD><TD><CENTER><A HREF="javascript:void(0);" onClick="imgClick(7);"><IMG NAME="i7" SRC="../images/l7/block9_3.gif" BORDER="0"></CENTER></A></TD><TD><CENTER><A HREF="javascript:void(0);" onClick="imgClick(8);"><IMG NAME="i8" SRC="../images/l7/block9_3.gif" BORDER="0"></CENTER></A></TD><TD><CENTER><A HREF="javascript:void(0);" onClick="imgClick(9);"><IMG NAME="i9" SRC="../images/l7/block9_3.gif" BORDER="0"></CENTER></A></TD><TD><CENTER><A HREF="javascript:void(0);" onClick="imgClick(10);"><IMG NAME="i10" SRC="../images/l7/block9_3.gif" BORDER="0"></CENTER></A></TD></TR><TR><TD BGCOLOR="#C0C0C0">y=2f(x/2)</TD><TD><CENTER><A HREF="javascript:void(0);" onClick="imgClick(11);"><IMG NAME="i11" SRC="../images/l7/block9_3.gif" BORDER="0"></CENTER></A></TD><TD><CENTER><A HREF="javascript:void(0);" onClick="imgClick(12);"><IMG NAME="i12" SRC="../images/l7/block9_3.gif" BORDER="0"></CENTER></A></TD><TD><CENTER><A HREF="javascript:void(0);" onClick="imgClick(13);"><IMG NAME="i13" SRC="../images/l7/block9_3.gif" BORDER="0"></CENTER></A></TD><TD><CENTER><A HREF="javascript:void(0);" onClick="imgClick(14);"><IMG NAME="i14" SRC="../images/l7/block9_3.gif" BORDER="0"></CENTER></A></TD><TD><CENTER><A HREF="javascript:void(0);" onClick="imgClick(15);"><IMG NAME="i15" SRC="../images/l7/block9_3.gif" BORDER="0"></CENTER></A></TD></TR><TR><TD BGCOLOR="#C0C0C0">y=-f(-x)</TD><TD><CENTER><A HREF="javascript:void(0);" onClick="imgClick(16);"><IMG NAME="i16" SRC="../images/l7/block9_3.gif" BORDER="0"></CENTER></A></TD><TD><CENTER><A HREF="javascript:void(0);" onClick="imgClick(17);"><IMG NAME="i17" SRC="../images/l7/block9_3.gif" BORDER="0"></CENTER></A></TD><TD><CENTER><A HREF="javascript:void(0);" onClick="imgClick(18);"><IMG NAME="i18" SRC="../images/l7/block9_3.gif" BORDER="0"></CENTER></A></TD><TD><CENTER><A HREF="javascript:void(0);" onClick="imgClick(19);"><IMG NAME="i19" SRC="../images/l7/block9_3.gif" BORDER="0"></CENTER></A></TD><TD><CENTER><A HREF="javascript:void(0);" onClick="imgClick(20);"><IMG NAME="i20" SRC="../images/l7/block9_3.gif" BORDER="0"></CENTER></A></TD></TR><TR><TD BGCOLOR="#C0C0C0">2-f(x)</TD><TD><CENTER><A HREF="javascript:void(0);" onClick="imgClick(21);"><IMG NAME="i21" SRC="../images/l7/block9_3.gif" BORDER="0"></CENTER></A></TD><TD><CENTER><A HREF="javascript:void(0);" onClick="imgClick(22);"><IMG NAME="i22" SRC="../images/l7/block9_3.gif" BORDER="0"></CENTER></A></TD><TD><CENTER><A HREF="javascript:void(0);" onClick="imgClick(23);"><IMG NAME="i23" SRC="../images/l7/block9_3.gif" BORDER="0"></CENTER></A></TD><TD><CENTER><A HREF="javascript:void(0);" onClick="imgClick(24);"><IMG NAME="i24" SRC="../images/l7/block9_3.gif" BORDER="0"></CENTER></A></TD><TD><CENTER><A HREF="javascript:void(0);" onClick="imgClick(25);"><IMG NAME="i25" SRC="../images/l7/block9_3.gif" BORDER="0"></CENTER></A></TD></TR></TABLE><FORM><CENTER><INPUT TYPE="button" VALUE="Проверить" onClick="checkIt();"><INPUT TYPE="text" NAME="reply" SIZE="20"></CENTER></FORM>
+<SCRIPT LANGUAGE="JavaScript" TYPE="text/javascript">
+var data = new Array (25);
+function imgClick (par) {  
+ if (data[par-1] == true) {    
+  document.images[par-1].src="../images/l7/block9_3.gif";    
+  data[par-1] = false;  
+ } 
+ else { 
+  document.images[par-1].src="../images/l7/block9_2.gif";   
+  data[par-1] = true;  
+}}
+function checkIt () {  
+  var rv = 0;  
+  var tt = false;
+  for (var i=0; i<25; i++) {  
+    if (data[i] == true) rv++;  }  
+  tt = data[2] && data[5] && data[14] && data[16] && data[23];  
+  if (rv == 5 && tt) {    
+    document.forms[0].reply.value = "Верно";  
+   }  else { 
+    document.forms[0].reply.value = "Неверно";  
+   }}
+ // init
+  for (var i=0; i<25; i++) {  data[i] = false;}
+  var img = new Image();
+  img.src = "../images/l7/block9_2.gif";
+</SCRIPT></BODY></HTML>

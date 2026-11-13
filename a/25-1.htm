@@ -1,0 +1,681 @@
+<HTML>
+<HEAD>
+<TITLE> Журнал ЦПО. Дистанционное обучение. </TITLE>
+</HEAD>
+<BODY BGCOLOR="#EFEFEF" TEXT="Black" LINK="Teal" VLINK="Gray" ALINK="#B3CFC4">
+<TABLE WIDTH="100%" BORDER="0" CELLSPACING="0" CELLPADDING="0">
+<TR>
+<TD  width=3%  ROWSPAN="2" BGCOLOR="#82B496">&nbsp;</TD>
+<TD  width=3% ROWSPAN="2" BGCOLOR="Black">&nbsp;</TD>
+<TD  width=88% ALIGN="CENTER" BGCOLOR="Gray">
+<FONT COLOR="White">
+<EM>Компьютерные</EM><BR>
+<FONT SIZE="+1"><STRONG>ИНСТРУМЕНТЫ</STRONG></FONT><BR>
+<EM>в образовании</EM>
+</FONT></TD>
+<TD  width=3% ROWSPAN="2" BGCOLOR="Black">&nbsp;</TD>
+<TD  width=3% ROWSPAN="2" BGCOLOR="#82B496">&nbsp;</TD>
+</TR><TR><TD BGCOLOR="Black">&nbsp;</TD>
+</TR><TR><TD COLSPAN="5" ALIGN="CENTER" VALIGN="MIDDLE" BGCOLOR="#82B496">
+<FONT SIZE="-1">
+<HR SIZE="1" NOSHADE>
+[ <A HREF="index.htm">начало</A> ] [ <A HREF="http://www.aec.neva.ru/center/">ЦПО</A> ] [ <A HREF="mailto:pozdnkov@aec.neva.ru">e-mail</A> ] 
+<HR SIZE="1" NOSHADE>
+</FONT>
+</TD></TR></TABLE>
+<TABLE WIDTH="100%" BORDER="0" CELLSPACING="0" CELLPADDING="0" ALIGN="CENTER" VALIGN="MIDDLE" NOWRAP BGCOLOR="#82B496">
+<TR><TD WIDTH="30%" ALIGN="CENTER" VALIGN="MIDDLE"><FONT COLOR="White" SIZE="+2"><EM>  
+Сценарии уроков 
+
+</EM></FONT></TD><TD WIDTH="70%" BGCOLOR="#EFEFEF"><P ALIGN="RIGHT"><FONT SIZE="-1"><EM>
+Дмитриева М.В.<BR>Павлова М.В. 
+
+</EM></FONT></P><H3 ALIGN="CENTER">
+Система автоматизации процесса решения задач.<p>
+Часть 1. Элементы математической логики.
+</H3><p>&nbsp;</TD></TR></TABLE>
+
+
+
+
+
+
+
+<!-- -- -->
+<TABLE WIDTH="100%" BORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#82B496">
+<TR><TD COLSPAN="2" align=center><font size="+1" color=white>
+Введение
+&nbsp;</font></TD></TR></TABLE>
+<TABLE WIDTH="100%" BORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#82B496">
+<TR><TD WIDTH="97%" BGCOLOR="#EFEFEF"><BLOCKQUOTE><P>&nbsp;<p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;
+Математическая логика - наука о правильных математических рассуждениях, о математическом мышлении. Впервые правила рассуждений систематизировал Аристотель. Однако как наука математическая логика сложилась лишь в середине ХIX века, когда Джордж Буль ввел логические связки и исчисление высказываний. Современная математическая логика изучает: а) структуру математических высказываний, б) исходные постулаты математики (аксиомы и правила вывода),
+в) математические доказательства (выводы), г) истинные математические утверждения (теоремы, леммы).<P>
+Одной из основных задач математической логики является формализация понятия доказательства.<P>
+В данной работе описывается система, позволяющая автоматически находить решения для определенного класса 
+задач. Теоретическая база, на которую опирается система, это в основном работа [4],  полезны  также книги [1,2,3,8,9]. 
+При описании системы поиска доказательств было решено выделить и описать отдельно три независимые части. В 
+первой части приводятся основные понятия математической логики: формулы исчисления высказываний, равнозначность формул,
+ построение конъюнктивно - нормальной формы. Вводится понятие логического следствия и формулируются теоремы 
+о логическом следствии. Вторая часть посвящена проблеме формализации процесса доказательства. Вводится понятие резольвенты
+. Описывается метод резолюций. Приводятся и обосновываются правила сокращения множества дизъюнктов. Третья 
+часть содержит общее описание системы и несколько примеров ее использования. Все определения, теоремы и методы иллюстрируются 
+различными примерами. <P>
+Изложенный материал использовался ии занятий  по математической логике и методам решения задач искусственного интеллекта как 
+со старшеклассниками специализированных классов при математико-механическом факультете СПбГУ, так  и 
+со студентами. Описываемая система использовалась на занятиях в компьютерном классе.<P>
+Данная работа выполнена при поддержке Федеральной целевой программы “Государственная поддержка интеграции высшего образования 
+и фундаментальной науки на 1997-2000 г.г.”. 
+
+</BLOCKQUOTE><P>&nbsp;</TD><TD WIDTH="3%">&nbsp;</TD></TR></TABLE>
+
+
+
+<TABLE WIDTH="100%" BORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#82B496">
+<TR><TD COLSPAN="2" align=center>&nbsp;<font size="+1" color=white>
+Основные определения и обозначения
+
+</font></TD></TR></TABLE>
+<TABLE WIDTH="100%" BORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#82B496">
+<TR><TD WIDTH="3%">&nbsp;</TD>
+<TD WIDTH="97%" BGCOLOR="#EFEFEF"><BLOCKQUOTE><P>&nbsp;<p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;
+
+В обычной жизни человек принимает решения в зависимости от конкретной ситуации.
+ Предположим,  что нам известны некоторые факты (или ранее уже доказанные утверждения) 
+F1,F2,..FN и,предположим, что нас интересует, следует ли некоторое утверждение G из
+ утверждений F1,F2,..FN.  Утверждение, что G логически следует из утверждений F1,F2,...FN 
+называют теоремой, а рассуждения, позволяющие установить, что теорема верна, называют 
+доказательством этой теоремы.<P>
+Математическая логика и автоматические методы доказательства теорем являются наиболее 
+бурно развивающимися областями искусственного интеллекта. Сложность поиска доказательства 
+зависит от того, какие средства используются для задания утверждений F1,F2,...FN и G. 
+В представленной работе для описания утверждений  будут использоваться формулы 
+исчислений высказываний [3,8,9]. Каждое высказывание либо истинно, либо ложно. Можно  
+строить составные высказывания, используя логические связки: отрицание (~), конъюнкцию 
+(&), дизъюнкцию (V), импликацию (=>) и эквивалентность (<=>). Логические константы
+ “истина” и “ложь” будем обозначать буквами “И” и “Л” соответственно.<p>
+Унарная связка ~ меняет значение высказывания на противоположное.<P>
+Ниже приводится таблица истинности для рассматриваемых бинарных логических связок.
+<!-- Следующая таблица была создана мастером Web-страниц для Microsoft Excel. -->
+<!-- ------------------------- -->
+<!-- НАЧАЛО ВЫВОДА ПРЕОБРАЗОВАННЫХ ДАННЫХ -->
+<!-- ------------------------- -->
+<P>
+<Table border ALIgn="Center">
+<TR ALIGN="center" VALIGN="bottom">
+<TD width=17% ><FONT FACE="Arial Cyr">A</FONT></TD>
+<TD width=17% ><FONT FACE="Arial Cyr">B</FONT></TD>
+<TD width=17% ><FONT FACE="Arial Cyr">A&amp;B</FONT></TD>
+<TD width=17% ><FONT FACE="Arial Cyr">AVB</FONT></TD>
+<TD width=17% ><FONT FACE="Arial Cyr">A=&gt;B</FONT></TD>
+<TD width=17% ><FONT FACE="Arial Cyr">A&lt;=&gt;B</FONT></TD>
+</TR>
+<TR ALIGN="center" VALIGN="bottom">
+<TD><FONT FACE="Arial Cyr">И</FONT></TD>
+<TD><FONT FACE="Arial Cyr">И</FONT></TD>
+<TD><FONT FACE="Arial Cyr">И</FONT></TD>
+<TD><FONT FACE="Arial Cyr">И</FONT></TD>
+<TD><FONT FACE="Arial Cyr">И</FONT></TD>
+<TD><FONT FACE="Arial Cyr">И</FONT></TD>
+</TR>
+<TR ALIGN="center" VALIGN="bottom">
+<TD><FONT FACE="Arial Cyr">И</FONT></TD>
+<TD><FONT FACE="Arial Cyr">Л</FONT></TD>
+<TD><FONT FACE="Arial Cyr">Л</FONT></TD>
+<TD><FONT FACE="Arial Cyr">И</FONT></TD>
+<TD><FONT FACE="Arial Cyr">Л</FONT></TD>
+<TD><FONT FACE="Arial Cyr">Л</FONT></TD>
+</TR>
+<TR ALIGN="center" VALIGN="bottom">
+<TD><FONT FACE="Arial Cyr">Л</FONT></TD>
+<TD><FONT FACE="Arial Cyr">И</FONT></TD>
+<TD><FONT FACE="Arial Cyr">Л</FONT></TD>
+<TD><FONT FACE="Arial Cyr">И</FONT></TD>
+<TD><FONT FACE="Arial Cyr">И</FONT></TD>
+<TD><FONT FACE="Arial Cyr">Л</FONT></TD>
+</TR>
+<TR ALIGN="center" VALIGN="bottom">
+<TD><FONT FACE="Arial Cyr">Л</FONT></TD>
+<TD><FONT FACE="Arial Cyr">Л</FONT></TD>
+<TD><FONT FACE="Arial Cyr">Л</FONT></TD>
+<TD><FONT FACE="Arial Cyr">Л</FONT></TD>
+<TD><FONT FACE="Arial Cyr">И</FONT></TD>
+<TD><FONT FACE="Arial Cyr">И</FONT></TD>
+</TR>
+</Table>
+<!-- ------------------------- -->
+<!-- КОНЕЦ ВЫВОДА ПРЕОБРАЗОВАННЫХ ДАННЫХ -->
+<!-- ------------------------- -->
+<P>
+В исчислении высказываний логические константы и логические переменные называются атомами 
+и считаются простейшими логическими формулами. Кроме атомов, логической формулой считается 
+отрицание логической формулы, а также (F1*F2), где F1,F2 -логические формулы, а знак “ * ” 
+обозначает одну из бинарных логических связок, Других формул в исчислении высказываний 
+нет. Мы видим, что при построении сложных логических формул появляется большое количество 
+круглых скобок. Для сокращения их числа можно использовать старшинство логических связок. 
+Самой старшей является унарная связка отрицание, которая выполняется в первую очередь и 
+применяется к непосредственно следующей за ней формуле. Бинарные логические связки, 
+приведенные выше в таблице истинности, перечислены в ней по убыванию их старшинства. 
+Связки одного старшинства применяются в порядке их следования слева направо. 
+Если учитывать старшинство операций, то часть скобок можно опустить. Например, 
+формула (((p&~q)=>r)=>(p&r)) может быть записана вообще без скобок p&~q=>r=>p&r.<p>
+
+Если мы зададим значения всех входящих в формулу переменных, то сможем вычислить 
+значение всей формулы. В этом случае говорят, что мы задали <I>интерпретацию</I>. 
+В исчислении высказываний каждой формуле соответствует конечное число интерпретаций. 
+Формулы бывают <I>тождественно-истинными</I> (или <I>общезначимыми</I>) - это формулы истинные
+ в любой интерпретации. <I>Тождественно-ложными</I> (или <I>противоречивыми</I>)
+ называются формулы ложные в любой интерпретации.Наконец, <I>выполнимыми</I> называются
+ формулы, для которых можно указать интерпретацию,  в которой эта формула истинна. 
+Если две формулы имеют одинаковые значения на любых возможных интерпретациях, 
+то говорят, что они <I>равнозначны</I> или <I>эквивалентны</I>.Равнозначность формул
+ обозначают знаком “=”. Обозначим знаком “<B>F</B>” любую общезначимую формулу, и знаком “<B>T</B>”  
+любую противоречивую формулу.  Наиболее распространенные равнозначные формулы приведем
+ в следующей таблице.
+<!-- Следующая таблица была создана мастером Web-страниц для Microsoft Excel. -->
+<!-- ------------------------- -->
+<!-- НАЧАЛО ВЫВОДА ПРЕОБРАЗОВАННЫХ ДАННЫХ -->
+<!-- ------------------------- -->
+<P>
+<Table border=1 Align="Center">
+<TR ALIGN="center" VALIGN="bottom">
+<TD width=50% ><FONT FACE="Arial Cyr">A&lt;=&gt;B = (A&amp;B)V(~A&amp;~B)</FONT></TD>
+<TD width=50% ><FONT FACE="Arial Cyr">A&lt;=&gt;B = (AV~B)&amp;(~AVB)</FONT></TD>
+</TR>
+<TR ALIGN="center" VALIGN="bottom">
+<TD><FONT FACE="Arial Cyr">(A=&gt;B) = ~AVB</FONT></TD>
+<TD><FONT FACE="Arial Cyr">&nbsp;</FONT></TD>
+</TR>
+<TR ALIGN="center" VALIGN="bottom">
+<TD><FONT FACE="Arial Cyr">AV(BVC) = (AVB)VC </FONT></TD>
+<TD><FONT FACE="Arial Cyr">A&amp;(B&amp;C) = (A&amp;B)&amp;C</FONT></TD>
+</TR>
+<TR ALIGN="center" VALIGN="bottom">
+<TD><FONT FACE="Arial Cyr">AVB = BVA</FONT></TD>
+<TD><FONT FACE="Arial Cyr">A&amp;B = B&amp;A</FONT></TD>
+</TR>
+<TR ALIGN="center" VALIGN="bottom">
+<TD><FONT FACE="Arial Cyr">AV(B&amp;C) = (AVB)&amp;(AVC)</FONT></TD>
+<TD><FONT FACE="Arial Cyr">A&amp;(BVC) = (A&amp;B)V(A&amp;C)</FONT></TD>
+</TR>
+<TR ALIGN="center" VALIGN="bottom">
+<TD><FONT FACE="Arial Cyr">~(~A) = A</FONT></TD>
+<TD><FONT FACE="Arial Cyr">&nbsp;</FONT></TD>
+</TR>
+<TR ALIGN="center" VALIGN="bottom">
+<TD><FONT FACE="Arial Cyr">AV~A = <B>T</B></FONT></TD>
+<TD><FONT FACE="Arial Cyr">A&amp;~A = <B>F</B></FONT></TD>
+</TR>
+<TR ALIGN="center" VALIGN="bottom">
+<TD><FONT FACE="Arial Cyr">AV<B>F</B> = A</FONT></TD>
+<TD><FONT FACE="Arial Cyr">A&amp;<B>F</B> = <B>F</B></FONT></TD>
+</TR>
+<TR ALIGN="center" VALIGN="bottom">
+<TD><FONT FACE="Arial Cyr">AV<B>T</B> = <B>T</B></FONT></TD>
+<TD><FONT FACE="Arial Cyr">A&amp;<B>T</B> = A</FONT></TD>
+</TR>
+<TR ALIGN="center" VALIGN="bottom">
+<TD><FONT FACE="Arial Cyr">~(AVB) = ~A&amp;~B</FONT></TD>
+<TD><FONT FACE="Arial Cyr">~(A&amp;B) = ~AV~B</FONT></TD>
+</TR>
+</Table>
+<!-- ------------------------- -->
+<!-- КОНЕЦ ВЫВОДА ПРЕОБРАЗОВАННЫХ ДАННЫХ -->
+<!-- ------------------------- -->
+<P>
+<I>Определение. </I>
+
+<B>Пусть даны формулы F1,F2,...,Fn и формула G. 
+Говорят, что G логическое следствие формул F1,F2,...,Fn 
+(или  G следует из F1,F2,...Fn) 
+тогда и только тогда, когда для всякой интерпретации I, в которой истинны утверждения F1,F2,...,Fn, утверждение  G также истинно. 
+
+Утверждения F1,F2,...,Fn называют аксиомами (постулатами или посылками), утверждение G-следствием. </B><P>
+
+В качестве примеров мы будем использовать в основном задачи из книг Раймонда М.Смаллиана [5,6,7], в которых математическая логика используется при раскрытии преступлений, поиске сокровищ, выборе пути на загадочные острова и в других необычных ситуациях.<P>
+
+<B>Пример.</B> На складе совершено хищение. Подозрение пало на трех человек: А, В, и С, они были доставлены для допроса. Установлено следующее:
+<P>
+1. Никто, кроме А, В, С, не был замешан в деле.<BR>
+2. А никогда не ходит на дело без, по крайней мере, одного соучастника. <BR>
+3. С не виновен.<BR>
+Виновен ли В?
+<p>
+Обозначим через А утверждение - “А виновен”, через B - “B виновен”, через C - “C виновен”. Запишем утверждения 1-3 с помощью формул F1-F3 исчисления высказываний: 
+<p>
+F1: AVBVC<BR>
+F2: A=>BVC<BR>
+F3: ~C<BR>
+<p>
+Предполагаемый ответ - “В - виновен” обозначим через G. Проверим, является ли формула G 
+логическим следствием формул F1,F2,F3. С помощью таблицы переберем все интерпритации и 
+для каждой из них укажем значение каждой из формул F1, F2, F3 в этой интерпретации.
+<!-- Следующая таблица была создана мастером Web-страниц для Microsoft Excel. -->
+<!-- ------------------------- -->
+<!-- НАЧАЛО ВЫВОДА ПРЕОБРАЗОВАННЫХ ДАННЫХ -->
+<!-- ------------------------- -->
+<P>
+<Table border ALIgn="Center">
+<TR ALIGN="center" VALIGN="bottom">
+<TD width=5% ><FONT FACE="Arial Cyr">No</FONT></TD>
+<TD width=10% ><FONT FACE="Arial Cyr">A</FONT></TD>
+<TD width=10% ><FONT FACE="Arial Cyr">B</FONT></TD>
+<TD width=10% ><FONT FACE="Arial Cyr">C</FONT></TD>
+<TD width=17% ><FONT FACE="Arial Cyr">F1: AVBVC</FONT></TD>
+<TD width=17% ><FONT FACE="Arial Cyr">F2: A=&gt;BVC</FONT></TD>
+<TD width=17% ><FONT FACE="Arial Cyr">F3: ~C</FONT></TD>
+<TD width=17% ><FONT FACE="Arial Cyr">G:B</FONT></TD>
+</TR>
+<TR ALIGN="center" VALIGN="bottom">
+<TD><FONT FACE="Arial Cyr">1</FONT></TD>
+<TD><FONT FACE="Arial Cyr">И</FONT></TD>
+<TD><FONT FACE="Arial Cyr">И</FONT></TD>
+<TD><FONT FACE="Arial Cyr">И</FONT></TD>
+<TD><FONT FACE="Arial Cyr">И</FONT></TD>
+<TD><FONT FACE="Arial Cyr">И</FONT></TD>
+<TD><FONT FACE="Arial Cyr">Л</FONT></TD>
+<TD><FONT FACE="Arial Cyr">&nbsp;</FONT></TD>
+</TR>
+<TR ALIGN="center" VALIGN="bottom">
+<TD><FONT FACE="Arial Cyr">2</FONT></TD>
+<TD><FONT FACE="Arial Cyr">И</FONT></TD>
+<TD><FONT FACE="Arial Cyr">И</FONT></TD>
+<TD><FONT FACE="Arial Cyr">Л</FONT></TD>
+<TD><FONT FACE="Arial Cyr">И</FONT></TD>
+<TD><FONT FACE="Arial Cyr">И</FONT></TD>
+<TD><FONT FACE="Arial Cyr">И</FONT></TD>
+<TD><FONT FACE="Arial Cyr">И</FONT></TD>
+</TR>
+<TR ALIGN="center" VALIGN="bottom">
+<TD><FONT FACE="Arial Cyr">3</FONT></TD>
+<TD><FONT FACE="Arial Cyr">И</FONT></TD>
+<TD><FONT FACE="Arial Cyr">Л</FONT></TD>
+<TD><FONT FACE="Arial Cyr">И</FONT></TD>
+<TD><FONT FACE="Arial Cyr">И</FONT></TD>
+<TD><FONT FACE="Arial Cyr">И</FONT></TD>
+<TD><FONT FACE="Arial Cyr">Л</FONT></TD>
+<TD><FONT FACE="Arial Cyr">&nbsp;</FONT></TD>
+</TR>
+<TR ALIGN="center" VALIGN="bottom">
+<TD><FONT FACE="Arial Cyr">4</FONT></TD>
+<TD><FONT FACE="Arial Cyr">И</FONT></TD>
+<TD><FONT FACE="Arial Cyr">Л</FONT></TD>
+<TD><FONT FACE="Arial Cyr">Л</FONT></TD>
+<TD><FONT FACE="Arial Cyr">И</FONT></TD>
+<TD><FONT FACE="Arial Cyr">Л</FONT></TD>
+<TD><FONT FACE="Arial Cyr">И</FONT></TD>
+<TD><FONT FACE="Arial Cyr">&nbsp;</FONT></TD>
+</TR>
+<TR ALIGN="center" VALIGN="bottom">
+<TD><FONT FACE="Arial Cyr">5</FONT></TD>
+<TD><FONT FACE="Arial Cyr">Л</FONT></TD>
+<TD><FONT FACE="Arial Cyr">И</FONT></TD>
+<TD><FONT FACE="Arial Cyr">И</FONT></TD>
+<TD><FONT FACE="Arial Cyr">И</FONT></TD>
+<TD><FONT FACE="Arial Cyr">И</FONT></TD>
+<TD><FONT FACE="Arial Cyr">Л</FONT></TD>
+<TD><FONT FACE="Arial Cyr">&nbsp;</FONT></TD>
+</TR>
+<TR ALIGN="center" VALIGN="bottom">
+<TD><FONT FACE="Arial Cyr">6</FONT></TD>
+<TD><FONT FACE="Arial Cyr">Л</FONT></TD>
+<TD><FONT FACE="Arial Cyr">И</FONT></TD>
+<TD><FONT FACE="Arial Cyr">Л</FONT></TD>
+<TD><FONT FACE="Arial Cyr">И</FONT></TD>
+<TD><FONT FACE="Arial Cyr">И</FONT></TD>
+<TD><FONT FACE="Arial Cyr">И</FONT></TD>
+<TD><FONT FACE="Arial Cyr">И</FONT></TD>
+</TR>
+<TR ALIGN="center" VALIGN="bottom">
+<TD><FONT FACE="Arial Cyr">7</FONT></TD>
+<TD><FONT FACE="Arial Cyr">Л</FONT></TD>
+<TD><FONT FACE="Arial Cyr">Л</FONT></TD>
+<TD><FONT FACE="Arial Cyr">И</FONT></TD>
+<TD><FONT FACE="Arial Cyr">И</FONT></TD>
+<TD><FONT FACE="Arial Cyr">И</FONT></TD>
+<TD><FONT FACE="Arial Cyr">Л</FONT></TD>
+<TD><FONT FACE="Arial Cyr">&nbsp;</FONT></TD>
+</TR>
+<TR ALIGN="center" VALIGN="bottom">
+<TD><FONT FACE="Arial Cyr">8</FONT></TD>
+<TD><FONT FACE="Arial Cyr">Л</FONT></TD>
+<TD><FONT FACE="Arial Cyr">Л</FONT></TD>
+<TD><FONT FACE="Arial Cyr">Л</FONT></TD>
+<TD><FONT FACE="Arial Cyr">Л</FONT></TD>
+<TD><FONT FACE="Arial Cyr">И</FONT></TD>
+<TD><FONT FACE="Arial Cyr">И</FONT></TD>
+<TD><FONT FACE="Arial Cyr">&nbsp;</FONT></TD>
+</TR>
+</Table>
+<P>
+<!-- ------------------------- -->
+<!-- КОНЕЦ ВЫВОДА ПРЕОБРАЗОВАННЫХ ДАННЫХ -->
+<!-- ------------------------- -->
+Нас интересуют только те интерпретации, в которых все посылки (формулы F1,F2,F3) 
+истинны. Таких интерпретаций только две - вторая и шестая. В этих интерпретациях и 
+значение формулы G истинно. Следовательно, формула G - логическое следствие, то есть 
+В виновен.
+
+</BLOCKQUOTE><P>&nbsp;</TD></TR></TABLE>
+
+<!-- -- -->
+<TABLE WIDTH="100%" BORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#82B496">
+<TR><TD COLSPAN="2" align=center><font size="+1" color=white>
+Теоремы о логическом следствии
+&nbsp;</font></TD></TR></TABLE>
+<TABLE WIDTH="100%" BORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#82B496">
+<TR><TD WIDTH="97%" BGCOLOR="#EFEFEF"><BLOCKQUOTE><P>&nbsp;<p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;
+Теоремы о логическом следствии позволяют решение вопроса о том, является ли одна 
+формула следствием других, свести к анализу общезначимости или противоречивости 
+некоторой формулы.<P>
+Прежде, чем формулировать теоремы и рассматривать примеры их применения, рассмотрим 
+вопрос об упрощении формул. Нетрудно доказать, что любую формулу исчисления высказываний 
+можно преобразовать к равнозначной формуле, которая содержит только три логические 
+связки: отрицание, конъюнкцию и дизъюнкцию. Действительно, доказав равнозначность формул 
+A=>B и ~AVB, а также формул A<=>B и (A&B)V(~A&~B),  получим то, что требуется. Некоторые 
+часто используемые правила получили специальные названия например:
+<P>
+Закон двойного отрицания: ~~A = A.<BR>
+Закон контрапозиции: A=>B = ~B=>~A.<BR>
+Законы де Моргана: ~(AVB) = ~A&~B и ~(A&B) = ~AV~B.
+<P>
+Теорема 1. (о логическом следствии). <B>Пусть даны формулы F1,F2, ...,Fn и формула G. 
+Тогда формула G является логическим следствием формул  F1,F2,...,Fn тогда и 
+только тогда, когда формула F1&F2&...&Fn=>G общезначима.</B>
+<P>
+<B><I>Пример.</B></I> Предположим, что меня спрашивают: “А верно ли, что если вы любите 
+Еву, то вы также любите и Маргарет?”. А я отвечаю: “Если это правда, то я люблю Еву, 
+и если я люблю Еву, то это правда”. Люблю ли я Маргарет?<P>
+Продемонстрируем решение задачи на основании теоремы 1. Пусть через Е обозначено 
+утверждение - “Я люблю Еву”, через М - “Я люблю Маргарет”. Утверждение “Если вы любите 
+Еву, то вы любите Маргарет” запишется формулой: Е=>M. Утверждение: “Если это правда, 
+то я люблю Еву, и если я люблю Еву, то это правда” запишется так: ((E=>M)=>E)&(E=>(E=>M)).
+ Предположим, ответ будет “Я люблю Маргарет”. Тогда по теореме 1 формула 
+(((E=>M)=>E)&(E=>(E=>M)) =>M) должна быть общезначимой.<BR>
+ Проверим это,  выполнив эквивалентные преобразования формул:
+<P>
+((E=>M)=>E)&(E=>(E=>M)) =>M<BR>
+~(~(~EVM)VE)V~(~EV~EVM)VM<BR> 
+~E&MVEV~EVM<BR>
+EV~E
+<P>
+Последняя формула общезначима, следовательно, справедливо утверждение, что 
+“Я люблю Маргарет”.<P>
+
+Теорема 2. (о логическом следствии). <B>Пусть даны формулы F1,F2,...,Fn и формула G.
+ Тогда формула G является логическим следствием формул F1,F2,...,Fn тогда и только 
+тогда, когда формула  F1&F2&...&Fn&~G противоречива.</B><P>
+<B><I>Пример.</B></I> Рассмотрим предыдущий пример и ответим на вопрос: 
+“Люблю ли я Еву?”. На основании теоремы 2 о логическом следствии нас интересует 
+вопрос, является ли противоречивой формула: ((E=>M)=>E)&(E=>(E=>M)) &~E.
+<P>
+Убедимся в этом, выполнив эквивалентные преобразования: <BR>
+((E=>M)=>E)&(E=>(E=>M))&~E<BR>
+(E&~M)VE) &(E=>(E=>M)) &~E<BR>
+E&(~MVE)&(~EVM)& ~E<BR>
+E& ~E
+<P>
+Последняя формула противоречива, следовательно, справедливо утверждение “Я люблю Еву”.<P>
+Рассмотрим еще один <B><I>пример.</B></I> На некотором острове, населенном рыцарями и 
+лжецами (рыцари говорят только правду, лжецы только ложь), разнесся слух о том, что на 
+нем зарыты сокровища. Вы прибываете на остров и спрашиваете одного из местных жителей 
+(Назовем его А): “Есть ли на острове золото?”. В ответ на ваш вопрос А заявляет: 
+“Сокровища на этом острове есть в том и только в том случае, если я рыцарь”. 
+<P>
+а) можно ли определить, кто такой А - рыцарь или лжец?<BR>
+б) можно ли определить, есть ли сокровища на острове?
+<P>
+Ответим на второй вопрос. Обозначим через А утверждение “А-рыцарь”, через S - 
+“Сокровища на острове есть”. Тогда высказывание жителя А “Сокровища на острове есть 
+в том и только в том случае если, я рыцарь” запишется формулой: (A<=>S). Тогда,
+ если А - рыцарь, то его высказывание истинно, если лжец - то ложно. Таким образом, 
+наша посылка есть формула вида (A<=>(A<=>S)). Для того чтобы доказать, что утверждение 
+S следствие нашей посылки, то есть сокровища на острове есть, нам достаточно на основании 
+теоремы 2 доказать, что формула (A<=>(A<=>S))&~S противоречива. Проверим это, перебрав 
+все интерпретации и вычислив значения формул в каждой из них.
+<P>
+<!-- Следующая таблица была создана мастером Web-страниц для Microsoft Excel. -->
+<!-- ------------------------- -->
+<!-- НАЧАЛО ВЫВОДА ПРЕОБРАЗОВАННЫХ ДАННЫХ -->
+<!-- ------------------------- -->
+<Table border ALIgn="Center">
+<TR ALIGN="center" VALIGN="bottom">
+<TD width=10% ><FONT FACE="Arial Cyr">A</FONT></TD>
+<TD width=10% ><FONT FACE="Arial Cyr">S</FONT></TD>
+<TD width=17% ><FONT FACE="Arial Cyr">(A&lt;=&gt;S)</FONT></TD>
+<TD width=17% ><FONT FACE="Arial Cyr">(A&lt;=&gt;(A&lt;=&gt;S))</FONT></TD>
+<TD width=17% ><FONT FACE="Arial Cyr">(A&lt;=&gt;(A&lt;=&gt;S))&amp;~S</FONT></TD>
+</TR>
+<TR ALIGN="center" VALIGN="bottom">
+<TD><FONT FACE="Arial Cyr">И</FONT></TD>
+<TD><FONT FACE="Arial Cyr">И</FONT></TD>
+<TD><FONT FACE="Arial Cyr">И</FONT></TD>
+<TD><FONT FACE="Arial Cyr">И</FONT></TD>
+<TD><FONT FACE="Arial Cyr">Л</FONT></TD>
+</TR>
+<TR ALIGN="center" VALIGN="bottom">
+<TD><FONT FACE="Arial Cyr">И</FONT></TD>
+<TD><FONT FACE="Arial Cyr">Л</FONT></TD>
+<TD><FONT FACE="Arial Cyr">Л</FONT></TD>
+<TD><FONT FACE="Arial Cyr">Л</FONT></TD>
+<TD><FONT FACE="Arial Cyr">Л</FONT></TD>
+</TR>
+<TR ALIGN="center" VALIGN="bottom">
+<TD><FONT FACE="Arial Cyr">Л</FONT></TD>
+<TD><FONT FACE="Arial Cyr">И</FONT></TD>
+<TD><FONT FACE="Arial Cyr">Л</FONT></TD>
+<TD><FONT FACE="Arial Cyr">И</FONT></TD>
+<TD><FONT FACE="Arial Cyr">Л</FONT></TD>
+</TR>
+<TR ALIGN="center" VALIGN="bottom">
+<TD><FONT FACE="Arial Cyr">Л</FONT></TD>
+<TD><FONT FACE="Arial Cyr">Л</FONT></TD>
+<TD><FONT FACE="Arial Cyr">И</FONT></TD>
+<TD><FONT FACE="Arial Cyr">Л</FONT></TD>
+<TD><FONT FACE="Arial Cyr">Л</FONT></TD>
+</TR>
+</Table>
+<!-- ------------------------- -->
+<!-- КОНЕЦ ВЫВОДА ПРЕОБРАЗОВАННЫХ ДАННЫХ -->
+<!-- ------------------------- -->
+<P>
+Формула (A<=>(A<=>S))&~S ложна в любой интерпритации, следовательно, она противоречива, 
+и поэтому верно утверждение, что сокровища на острове есть.
+
+</BLOCKQUOTE><P>&nbsp;</TD><TD WIDTH="3%">&nbsp;</TD></TR></TABLE>
+
+<TABLE WIDTH="100%" BORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#82B496">
+<TR><TD COLSPAN="2" align=center>&nbsp;<font size="+1" color=white>
+Конъюнктивно-нормальная форма и ее построение
+</font></TD></TR></TABLE>
+<TABLE WIDTH="100%" BORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#82B496">
+<TR><TD WIDTH="3%">&nbsp;</TD>
+<TD WIDTH="97%" BGCOLOR="#EFEFEF"><BLOCKQUOTE><P>&nbsp;<p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;
+
+Во многих случаях удобно рассматривать вместо формул общего вида формулы  специального 
+вида или, как говорят, формулы в канонической форме. В математической логике и в теории 
+автоматического доказательства теорем рассматриваются формулы в конъюнктивно-нормальной форме 
+(КНФ). Для любой формулы может быть построена эквивалентная ей формула в 
+конъюнктивно-нормальной форме. Как мы увидим дальше, такая формула может не быть 
+единственной. Уточним понятие конъюнктивно-нормальной формы, так как оно нам потребуется 
+в дальнейшем. Будем называть<I> литералом</I> атом или его отрицание, <I>дизъюнктором</I> 
+- литерал или дизъюнкцию литералов, и<I> конъюнктивно-нормальной формой</I> - формулу, 
+которая представляет собой либо дизъюнкт, либо является конъюнкцией дизъюнктов.<P>
+Теорема. <B>По любой формуле f может быть построена эквивалентная ей формула g, находящаяся 
+в КНФ. </B><P>
+Алгоритм построения формулы g поясним на примере, рассмотрев формулу f от трех переменных. 
+Возьмем в качестве формулы f формулу (X=>Y)<=>Z. Приведем таблицу, в которой перечислим 
+интерпретации и значение формулы в каждой из интерпретаций. Правый столбец таблицы будем 
+использовать для построения дизъюнктов конъюнктивно-нормальной формы, соответствующей 
+формуле.<P>
+<!-- Следующая таблица была создана мастером Web-страниц для Microsoft Excel. -->
+<!-- ------------------------- -->
+<!-- НАЧАЛО ВЫВОДА ПРЕОБРАЗОВАННЫХ ДАННЫХ -->
+<!-- ------------------------- -->
+<Table border ALIgn="Center">
+<TR ALIGN="center" VALIGN="bottom">
+<TD width=5% ><FONT FACE="Arial Cyr">No</FONT></TD>
+<TD width=7% ><FONT FACE="Arial Cyr">X</FONT></TD>
+<TD width=7% ><FONT FACE="Arial Cyr">Y</FONT></TD>
+<TD width=7% ><FONT FACE="Arial Cyr">Z</FONT></TD>
+<TD width=10% ><FONT FACE="Arial Cyr">(X=&gt;Y)&lt;=&gt;Z</FONT></TD>
+<TD width=17% ><FONT FACE="Arial Cyr">Дизъюнкты формулы g</FONT></TD>
+</TR>
+<TR ALIGN="center" VALIGN="bottom" >
+<TD><FONT FACE="Arial Cyr">1</FONT></TD>
+<TD><FONT FACE="Arial Cyr">И</FONT></TD>
+<TD><FONT FACE="Arial Cyr">И</FONT></TD>
+<TD><FONT FACE="Arial Cyr">И</FONT></TD>
+<TD><FONT FACE="Arial Cyr">И</FONT></TD>
+<TD><FONT FACE="Arial Cyr">&nbsp;</FONT></TD>
+</TR>
+<TR ALIGN="center" VALIGN="bottom">
+<TD><FONT FACE="Arial Cyr">2</FONT></TD>
+<TD><FONT FACE="Arial Cyr">И</FONT></TD>
+<TD><FONT FACE="Arial Cyr">И</FONT></TD>
+<TD><FONT FACE="Arial Cyr">Л</FONT></TD>
+<TD><FONT FACE="Arial Cyr">Л</FONT></TD>
+<TD><FONT FACE="Arial Cyr">~XV~YVZ</FONT></TD>
+</TR>
+<TR ALIGN="center" VALIGN="bottom">
+<TD><FONT FACE="Arial Cyr">3</FONT></TD>
+<TD><FONT FACE="Arial Cyr">И</FONT></TD>
+<TD><FONT FACE="Arial Cyr">Л</FONT></TD>
+<TD><FONT FACE="Arial Cyr">И</FONT></TD>
+<TD><FONT FACE="Arial Cyr">Л</FONT></TD>
+<TD><FONT FACE="Arial Cyr">~XV~YV~Z</FONT></TD>
+</TR>
+<TR ALIGN="center" VALIGN="bottom">
+<TD><FONT FACE="Arial Cyr">4</FONT></TD>
+<TD><FONT FACE="Arial Cyr">И</FONT></TD>
+<TD><FONT FACE="Arial Cyr">Л</FONT></TD>
+<TD><FONT FACE="Arial Cyr">Л</FONT></TD>
+<TD><FONT FACE="Arial Cyr">И</FONT></TD>
+<TD><FONT FACE="Arial Cyr">&nbsp;</FONT></TD>
+</TR>
+<TR ALIGN="center" VALIGN="bottom">
+<TD><FONT FACE="Arial Cyr">5</FONT></TD>
+<TD><FONT FACE="Arial Cyr">Л</FONT></TD>
+<TD><FONT FACE="Arial Cyr">И</FONT></TD>
+<TD><FONT FACE="Arial Cyr">И</FONT></TD>
+<TD><FONT FACE="Arial Cyr">И</FONT></TD>
+<TD><FONT FACE="Arial Cyr">&nbsp;</FONT></TD>
+</TR>
+<TR ALIGN="center" VALIGN="bottom">
+<TD><FONT FACE="Arial Cyr">6</FONT></TD>
+<TD><FONT FACE="Arial Cyr">Л</FONT></TD>
+<TD><FONT FACE="Arial Cyr">И</FONT></TD>
+<TD><FONT FACE="Arial Cyr">Л</FONT></TD>
+<TD><FONT FACE="Arial Cyr">Л</FONT></TD>
+<TD><FONT FACE="Arial Cyr">XV~YVZ</FONT></TD>
+</TR>
+<TR ALIGN="center" VALIGN="bottom">
+<TD><FONT FACE="Arial Cyr">7</FONT></TD>
+<TD><FONT FACE="Arial Cyr">Л</FONT></TD>
+<TD><FONT FACE="Arial Cyr">Л</FONT></TD>
+<TD><FONT FACE="Arial Cyr">И</FONT></TD>
+<TD><FONT FACE="Arial Cyr">И</FONT></TD>
+<TD><FONT FACE="Arial Cyr">&nbsp;</FONT></TD>
+</TR>
+<TR ALIGN="center" VALIGN="bottom">
+<TD><FONT FACE="Arial Cyr">8</FONT></TD>
+<TD><FONT FACE="Arial Cyr">Л</FONT></TD>
+<TD><FONT FACE="Arial Cyr">Л</FONT></TD>
+<TD><FONT FACE="Arial Cyr">Л</FONT></TD>
+<TD><FONT FACE="Arial Cyr">Л</FONT></TD>
+<TD><FONT FACE="Arial Cyr">XVYVZ</FONT></TD>
+</TR>
+</Table>
+<!-- ------------------------- -->
+<!-- КОНЕЦ ВЫВОДА ПРЕОБРАЗОВАННЫХ ДАННЫХ -->
+<!-- ------------------------- -->
+<P>
+Выделим те интерпретации, в которых формула принимает значение ложь, и для этих 
+интерпретаций построим дизъюнкт по правилу: если значение переменной ложь, то включаем 
+в дизъюнкт эту переменную, в противном случае включаем переменную с отрицанием. 
+Тогда по построению в интерпретациях, в которых значение f ложно, значение g также ложно. 
+В нашем случае g - конъюнкция построенных формул: (~XV~YVZ)&(~XVYV~Z)&(XV~YVZ)&(XVYVZ). 
+Формулы f и g равнозначны и g имеет КНФ. Равнозначность формул можно доказать в качестве 
+упражнения.<P>
+Заметим, что КНФ формулы f можно получить, выполняя последовательно эквивалентные 
+преобразования формулы f (избавляясь от логической эквивалентности, импликации, 
+подтягивая логическое отрицание к атомам, применяя правила де Моргана и другие законы). 
+Продемонстрируем в качестве примера преобразования для формулы (X=>Y)=>Z:<P>
+(X=>Y)<=>Z = ((X=>Y)=>Z)&(Z=>(X=>Y)) =<BR>
+(~(X=>Y)VZ)&(~ZV~XVY) = (~(~XVY)VZ)&(~Z~XVY) =<BR>
+(X&~YVZ)&(~ZV~XVY) = (XVZ)&(~YVZ)&(~XVYV~Z)
+<P>
+Полученная формула g1: (XVZ)&(~YVZ)&(~XVYV~Z) эквивалентна исходной формуле f, находится 
+в конъюнктивно-нормальной форме и не совпадает с g. Мы видим, что для формулы f 
+построены две равнозначные ей формулы g и g1, которые различны и обе находятся в 
+конъюнктивно-нормальной форме.<P>
+Итак, для того , чтобы доказать, что утверждение G следует из известных или уже ранее 
+доказанных фактов F1,F2,...,Fm, мы можем поступить следующим образом:<BR>
+- на основании определения логического следствия рассмотреть все интерпретации, 
+в которых истинны посылки F1-Fm, и проверить, истинно ли значение G в этих интерпретациях;<BR>
+- на основании теоремы 1 о следствии исследовать, является ли формула F1&F2&....&FmG 
+общезначимой;<BR>
+- на основании теоремы 2  о следствии исследовать, является ли  формула F1&F2&....&Fm&~G 
+противоречивой.<P>
+Мы можем преобразовать формулу F1&F2&....&Fm&~G к КНФ, получив равнозначную формулу 
+S1&S2&...&Sn, рассматриваемую как множество дизъюнктов {S1,S2,...,Sn}. Как по утвержденям 
+Si получать новые утверждения и  строить доказательство,  мы рассмотрим в следующей части.
+
+</BLOCKQUOTE><P>&nbsp;</TD></TR></TABLE>
+
+
+<!-- -- -->
+<TABLE WIDTH="100%" BORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#82B496">
+<TR><TD COLSPAN="2" align=center><font size="+1" color=white>
+Список литературы
+&nbsp;</font></TD></TR></TABLE>
+<TABLE WIDTH="100%" BORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#82B496">
+<TR><TD WIDTH="97%" BGCOLOR="#EFEFEF"><BLOCKQUOTE><P>&nbsp;<p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;
+<P>
+1. Н. Дж. Нильсон. Принципы искусственного интеллекта. М.: Радио и связь, 1985.<P>
+2. Н. Дж. Нильсон. Искусственный интеллект. Методы поиска решений. М.: Мир, 1973.<P>
+3. С.Клини. Математическая логика М.: Mир, 1973.<P>
+4. Ч.Чень, Р.Ли. Математическая логика и автоматическое доказательство теорем. Hаука, 1983.<P>
+6. Р.Смаллиан. Как же называется эта книга? M.: Mир, 1981.<P>
+7. Р.Смаллиан. Принцесса или тигр? М.: Мир, 1985.<P>
+8. Р.Смаллиан. Алиса в стране смекалки. М. Мир, 1987.<P>
+9. Н.К. Косовский. Элементы математической логики и ее применение к теории
+   субрекурсивных алгоритмов. Изд-во ЛГУ, 1981.
+
+</BLOCKQUOTE><P>&nbsp;</TD><TD WIDTH="3%">&nbsp;</TD></TR></TABLE>
+
+
+
+
+
+<!-- авторы -->
+
+<TABLE WIDTH="100%" BORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#82B496">
+<TR><TD COLSPAN="2">&nbsp;</TD></TR></TABLE>
+<TABLE WIDTH="100%" BORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#82B496">
+<TR>
+<TD WIDTH="70%" BGCOLOR="#EFEFEF">
+&nbsp;<p><BLOCKQUOTE><STRONG>
+Дмитриева М.В. доцент кафедры информатики 
+                СПбГУ, 
+                <P>Павлова М.В. старший преподаватель кафедры информатики СПбГУ, 
+                преподаватель школы-лицея N419
+
+
+</STRONG></BLOCKQUOTE><P>&nbsp;</TD>
+<TD WIDTH="30%" ALIGN="CENTER" VALIGN="MIDDLE"><FONT COLOR="White" SIZE="+2"><EM>&nbsp;НАШИ&nbsp;АВТОРЫ&nbsp;</EM></FONT></TD></TR>
+<TR><TD COLSPAN="2" ALIGN="CENTER" VALIGN="MIDDLE" BGCOLOR="#82B496">
+<FONT SIZE="-1"><HR SIZE="1" NOSHADE>
+[ <A HREF="index.htm">начало</A> ] [ <A HREF="http://www.aec.neva.ru/center/">ЦПО</A> ] [ <A HREF="mailto:pozdnkov@aec.neva.ru">e-mail</A> ] 
+<HR SIZE="1" NOSHADE></FONT></TD></TR></TABLE>
+</BODY>
+</HTML>
